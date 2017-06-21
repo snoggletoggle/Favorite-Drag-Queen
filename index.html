@@ -1,17 +1,14 @@
 <html>
 	<head>
 		<title>Favorite Pok&eacute;mon Chooser</title>
-		<link href="style.css" rel="stylesheet" type="text/css" id="css">
+		<link href="css/style.css" rel="stylesheet" type="text/css" id="css">
 		<link rel="icon" href="images/favicon.png">
 		<link rel="shortcut icon" href="images/favicon.ico">
 		<link rel="apple-touch-icon" href="images/favicon.png">
-		<script src="jquery-1.10.2.js"></script>
-		<script src="script.js"></script>
-		<script src="tool.js"></script>
 	</head>
 	<body onLoad="loader()">
 		<div id="choice">
-			<h1 id="egg">Click on an egg to begin!</h1>
+			<h1 id="egg">Click on start to begin!</h1>
 			<button id="firstchoice" class="pkmn" onclick="start()"><img src="images/egg.png"></button>
 			<button id="secondchoice" class="pkmn" onclick="start()"><img src="images/egg.png"></button>
 		</div>
@@ -44,7 +41,7 @@
 					<br>
 					<span id="only">Only Pok&eacute;mon from selection:
 					<input type="checkbox" id="newPkm" onchange="updateGen(document.getElementsByTagName('select')[0].value)"></span><!--<br>
-					Turn off legendaries: 
+					Turn off legendaries:
 					<input type="checkbox" id="legendary">--><br>
 					Background:
 					<select id="bg" onchange="bgChange(this.value)" enabled>
@@ -97,5 +94,8 @@
 				The original source by fio4ri can be viewed <a href="https://github.com/fio4ri/FavoritePokemon">here</a> and the current source by Quetzle can be viewed <a href="https://github.com/quetzle/FavoritePokemon">here</a>.
 			</div>
 		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="script.js"></script>
+		<script src="tool.js"></script>
 	</body>
 </html>

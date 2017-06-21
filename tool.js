@@ -12,7 +12,7 @@ function bgChange(val) {
 	}
 }
 $(document).keydown(function(e){
-    if (e.which == 37) { 
+    if (e.which == 37) {
        $('#firstchoice').click();
        return false;
     } else if(e.which == 39) {
@@ -43,23 +43,23 @@ function gameDone() {
 	}
 }
 /*
- * Image preview script 
+ * Image preview script
  * powered by jQuery (http://www.jquery.com)
- * 
+ *
  * written by Alen Grakalic (http://cssglobe.com)
- * 
+ *
  * for more info visit http://cssglobe.com/post/1695/easiest-tooltip-and-image-preview-using-jquery
  *
  */
- 
-this.imagePreview = function(){	
-		
+
+this.imagePreview = function(){
+
 		xOffset = 300;
 		yOffset = -144;
-		
+
 	$("img.fav").hover(function(e){
 		this.t = this.title;
-		this.title = "";	
+		this.title = "";
 		var c = (this.t != "") ? "<br/>" + this.t : "";
 		$("body").append("<p id='preview'><img id='tool' src='"+ this.src +"' />"+ c +"</p>");
 		$("#preview")
@@ -73,14 +73,14 @@ this.imagePreview = function(){
 			.css("height","288px");
     },
 	function(){
-		this.title = this.t;	
+		this.title = this.t;
 		$("#preview").remove();
-    });	
+    });
 	$("img.fav").mousemove(function(e){
 		$("#preview")
 			.css("top",(e.pageY - xOffset) + "px")
 			.css("left",(e.pageX + yOffset) + "px");
-	});	
+	});
 };
 $(document).ready(function(){
 	imagePreview();
@@ -97,6 +97,10 @@ function helpHide() {
 	$("#help").attr("onClick","helpShow()");
 }
 function loader() {
-	console.log(' ______                    _ _         _____      _     __                          _____ _\n|  ____|                  (_) |       |  __ \\    | |   /_/                         / ____| |\n| |__ __ ___   _____  _ __ _| |_ ___  | |__) |__ | | _____ _ __ ___   ___  _ __   | |    | |__   ___   ___  ___  ___ _ __\n|  __/ _` \\ \\ / / _ \\| \'__| | __/ _ \\ |  ___/ _ \\| |/ / _ \\ \'_ ` _ \\ / _ \\| \'_ \\  | |    | \'_ \\ / _ \\ / _ \\/ __|/ _ \\ \'__|\n| | | (_| |\\ V / (_) | |  | | ||  __/ | |  | (_) |   <  __/ | | | | | (_) | | | | | |____| | | | (_) | (_) \\__ \\  __/ |\n|_|  \\__,_| \\_/ \\___/|_|  |_|\\__\\___| |_|   \\___/|_|\\_\\___|_| |_| |_|\\___/|_| |_|  \\_____|_| |_|\\___/ \\___/|___/\\___|_|');
+	console.log(' ______                    _ _         _____      _     __                          _____ _\n'+
+							'|  ____|                  (_) |       |  __ \\    | |   /_/                         / ____| |\n'+
+							'| |__ __ ___   _____  _ __ _| |_ ___  | |__) |__ | | _____ _ __ ___   ___  _ __   | |    | |__   ___   ___  ___  ___ _ __\n'+
+							'|  __/ _` \\ \\ / / _ \\| \'__| | __/ _ \\ |  ___/ _ \\| |/ / _ \\ \'_ ` _ \\ / _ \\| \'_ \\  | |    | \'_ \\ / _ \\ / _ \\/ __|/ _ \\ \'__|\n'+
+							'| | | (_| |\\ V / (_) | |  | | ||  __/ | |  | (_) |   <  __/ | | | | | (_) | | | | | |____| | | | (_) | (_) \\__ \\  __/ |\n'+
+							'|_|  \\__,_| \\_/ \\___/|_|  |_|\\__\\___| |_|   \\___/|_|\\_\\___|_| |_| |_|\\___/|_| |_|  \\_____|_| |_|\\___/ \\___/|___/\\___|_|');
 }
-	
