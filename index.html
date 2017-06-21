@@ -1,66 +1,90 @@
 <html>
 	<head>
 		<title>Favorite Pok&eacute;mon Chooser</title>
-		<link href="css/style.css" rel="stylesheet" type="text/css" id="css">
 		<link rel="icon" href="images/favicon.png">
 		<link rel="shortcut icon" href="images/favicon.ico">
 		<link rel="apple-touch-icon" href="images/favicon.png">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link href="css/style.css" rel="stylesheet" type="text/css" id="css">
+
 	</head>
 	<body onLoad="loader()">
-		<div id="choice">
-			<h1 id="egg">Click on start to begin!</h1>
-			<button id="firstchoice" class="pkmn" onclick="start()"><img src="images/egg.png"></button>
-			<button id="secondchoice" class="pkmn" onclick="start()"><img src="images/egg.png"></button>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-6 col-xs-offset-3">
+					<h1 id="title">Click on start to begin!</h1>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 img-responsive">
+					<button id="left" class="pkmn" onclick="start()"><img src="images/egg.png"></button>
+				</div>
+				<div class="col-xs-6 img-responsive">
+					<button id="right" class="pkmn" onclick="start()"><img src="images/egg.png"></button>
+				</div>
+			</div>
+			<div class="row" id="choice">
+				<div class="col-xs-12">
+					<form>
+
+					</form>
+				</div>
+			</div>
 		</div>
+
 		<div id="info">
 			<div id="numbers">
-				<button id="skip" disabled="disabled" onclick="reroll(3)" disabled>Skip</button><br>
+				<button id="skip" onclick="reroll(3)" disabled>Skip</button><br>
 				<span id="elim" class="before">---</span> / <span id="total">721</span> eliminated<br>
 				<div id="settings">
-					Pok&eacute;mon:
 					<select id="gen" onchange="updateGen(this.value)" enabled>
-						<optgroup label="Generations">
-							<option value="0">All</option>
-							<option value="1">I. (RBY)</option>
-							<option value="2">II. (GSC)</option>
-							<option value="3">III. (RSE)</option>
-							<option value="4">IV. (DPP)</option>
-							<option value="5">V. (BW)</option>
-							<option value="6">VI. (XY)</option>
-						</optgroup>
-						<optgroup label="Categories">
-							<option value="7">Starters</option>
-							<option value="8">Families / Final Evos</option>
-						</optgroup>
-						<optgroup label="Mega Evolutions">
-							<option value="9">All</option>
-							<option value="10">VI. (XY)</option>
-							<option value="11">Only Megas</option>
+						<optgroup label="Seasons">
+							<option value="0">
+								All
+							</option>
+							<option value="1">
+								1
+							</option>
+							<option value="2">
+								2
+							</option>
+							<option value="3">
+								3
+							</option>
+							<option value="4">
+								4
+							</option>
+							<option value="5">
+								5
+							</option>
+							<option value="6">
+								6
+							</option>
+							<option value="7">
+								7
+							</option>
+							<option value="8">
+								8
+							</option>
+							<option value="9">
+								9
+							</option>
 						</optgroup>
 					</select>
-					<br>
-					<span id="only">Only Pok&eacute;mon from selection:
-					<input type="checkbox" id="newPkm" onchange="updateGen(document.getElementsByTagName('select')[0].value)"></span><!--<br>
-					Turn off legendaries:
-					<input type="checkbox" id="legendary">--><br>
-					Background:
-					<select id="bg" onchange="bgChange(this.value)" enabled>
-						<option value="grey">Solid Grey</option>
-						<option value="0">Gen 1 Pok&eacute;mon</option>
-						<option value="1">Pikachu</option>
-						<option value="2">Scraggy</option>
-						<option value="3">Pok&eacute;ball</option>
-					</select><br>
 					<button id="help" onClick="helpShow()">Help</button><br>
 					<div id="helpcontent">
 						<h2>Help</h2>
 						<h3>General</h3>
-						<p>This favorite Pok&eacute;mon chooser presents you with 2 Pok&eacute;mon to choose from. Click (or hit the corresponding arrow key) to select the Pok&eacute;mon you prefer.</p>
-						<p>You don't have to base your decisions based on who's your favorite, though: you can base it on whatever you want! Cutest Pok&eacute;mon, most useful Pok&eacute;mon, the list goes on.</p>
-						<h3>Choosing Sets</h3>
-						<p>To choose a set of Pok&eacute;mon, select from the dropdown list labelled "Pok&eacute;mon" with the default value "All". From this list, there are 3 groups: Generations, Categories, and Megas. In the Generations group, the options are to choose all generations (the default) or the individual generations. Choosing all will allow you to use all Pok&eacute;mon and choosing a specific generation will choose the Pok&eacute;mon introduced in that generation. In the Categories group, there is a group of miscellaneous collections of Pok&eacute;mon. In the Megas group, you can choose to play with every Pok&eacute;mon including the mega evolutions, the Generation VI Pok&eacute;mon including megas, and only the megas.</p>
-						<p>Checking off the "Only Pok&eacute;mon from Selection" will only include Pok&eacute;mon from the selected set. Otherwise, it includes all of the Pok&eacute;mon from the preceding categories in the group. Some sets are automatically set to a certain configuration for this option and cannot be changed.</p>
-					</div>
+						<p>
+							This presents you with 2 queens to choose from. Click (or hit the corresponding arrow key) to select the Queen you prefer.
+							You can choose any queen for any reason, your preferences are your own.
+					</p>
+						<h3>Choosing Seasons</h3>
+						<p>
+							You can choose any combination of seasons to compare queens from.
+							Once you start the game, you can no longer pick different seasons.
+							Refreshing the page will allow you to pick again.
+						</p>
 				</div>
 				<script>
 					document.getElementById('newPkm').removeAttribute('checked');
@@ -95,6 +119,7 @@
 			</div>
 		</div>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script src="script.js"></script>
 		<script src="tool.js"></script>
 	</body>
