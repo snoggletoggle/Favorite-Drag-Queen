@@ -1,126 +1,63 @@
 <html>
-	<head>
-		<title>Favorite Pok&eacute;mon Chooser</title>
-		<link rel="icon" href="images/favicon.png">
-		<link rel="shortcut icon" href="images/favicon.ico">
-		<link rel="apple-touch-icon" href="images/favicon.png">
-		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-		<link href="css/style.css" rel="stylesheet" type="text/css" id="css">
 
-	</head>
-	<body onLoad="loader()">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-6 col-xs-offset-3">
-					<h1 id="title">Click on start to begin!</h1>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-6 img-responsive">
-					<button id="left" class="pkmn" onclick="start()"><img src="images/egg.png"></button>
-				</div>
-				<div class="col-xs-6 img-responsive">
-					<button id="right" class="pkmn" onclick="start()"><img src="images/egg.png"></button>
-				</div>
-			</div>
-			<div class="row" id="choice">
-				<div class="col-xs-12">
-					<form>
+<head>
+	<title>Favorite Pok&eacute;mon Chooser</title>
+	<link rel="icon" href="images/favicon.png">
+	<link rel="shortcut icon" href="images/favicon.ico">
+	<link rel="apple-touch-icon" href="images/favicon.png">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<!-- font awesome icons-->
+	<script src="https://use.fontawesome.com/c922607fde.js"></script>
 
-					</form>
-				</div>
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<h1 id="title">Click on (or press) an arrow to begin!</h1>
 			</div>
 		</div>
+		<div class="row">
+			<div class="col-xs-6  text-center">
+				<button id="left"><img id="left-img"><i style="font-size: 10em;" class="fa fa-arrow-left"></i></button>
+			</div>
+			<div class="col-xs-6 text-center">
+				<button id="right"><img id="right-img"><i style="font-size: 10em;" class="fa fa-arrow-right"></i></button>
+			</div>
+		</div>
+		<div class="row" id="choice">
+			<div class="col-xs-12">
+				<form>
 
-		<div id="info">
-			<div id="numbers">
-				<button id="skip" onclick="reroll(3)" disabled>Skip</button><br>
-				<span id="elim" class="before">---</span> / <span id="total">721</span> eliminated<br>
-				<div id="settings">
-					<select id="gen" onchange="updateGen(this.value)" enabled>
-						<optgroup label="Seasons">
-							<option value="0">
-								All
-							</option>
-							<option value="1">
-								1
-							</option>
-							<option value="2">
-								2
-							</option>
-							<option value="3">
-								3
-							</option>
-							<option value="4">
-								4
-							</option>
-							<option value="5">
-								5
-							</option>
-							<option value="6">
-								6
-							</option>
-							<option value="7">
-								7
-							</option>
-							<option value="8">
-								8
-							</option>
-							<option value="9">
-								9
-							</option>
-						</optgroup>
-					</select>
-					<button id="help" onClick="helpShow()">Help</button><br>
-					<div id="helpcontent">
-						<h2>Help</h2>
-						<h3>General</h3>
-						<p>
-							This presents you with 2 queens to choose from. Click (or hit the corresponding arrow key) to select the Queen you prefer.
-							You can choose any queen for any reason, your preferences are your own.
+				</form>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 text-center">
+				<button class="btn btn-info">Help</button>
+				<div id="helpcontent">
+					<h2>Help</h2>
+					<h3 class="text-left">General</h3>
+					<p class="well">
+						This presents you with 2 queens to choose from. Click (or hit the corresponding arrow key) to select the Queen you prefer. You can choose any queen for any reason, your preferences are your own.
 					</p>
-						<h3>Choosing Seasons</h3>
-						<p>
-							You can choose any combination of seasons to compare queens from.
-							Once you start the game, you can no longer pick different seasons.
-							Refreshing the page will allow you to pick again.
+					<div class="row">
+						<h3 class="text-right">Choosing Seasons</h3>
+						<p class="well">
+							You can choose any combination of seasons to compare queens from. Once you start the game, you can no longer pick different seasons. Refreshing the page will allow you to pick again.
 						</p>
+					</div>
 				</div>
-				<script>
-					document.getElementById('newPkm').removeAttribute('checked');
-					document.getElementById('newPkm').setAttribute('disabled','disabled');
-					document.getElementById('only').className = 'disabled';
-				</script><br><br>
-				<div id="images">
-					<span class="overlay">2</span>
-					<img src="images/fill.png" class="fav">
-					<span class="overlay">3</span>
-					<img src="images/fill.png" class="fav">
-					<span class="overlay">4</span>
-					<img src="images/fill.png" class="fav">
-					<span class="overlay">5</span>
-					<img src="images/fill.png" class="fav">
-					<span class="overlay">6</span>
-					<img src="images/fill.png" class="fav">
-					<span class="overlay">7</span>
-					<img src="images/fill.png" class="fav">
-					<span class="overlay">8</span>
-					<img src="images/fill.png" class="fav">
-					<span class="overlay">9</span>
-					<img src="images/fill.png" class="fav">
-					<span class="overlay">10</span>
-					<img src="images/fill.png" class="fav"><br><br>
-				</div>
-				Based on this <a href="http://www.contrib.andrew.cmu.edu/~msandbot/pokemon/">webpage</a> created by a student at Carnegie Mellon.<br>
-				Pok&eacute;mon sprites are from Smogon. <a href="http://www.smogon.com/download/sprites/bw/">(Gen 1 - 5)</a> <a href="http://www.smogon.com/media/sprites/xy/front/">(Gen 6)</a><br>
-				Diancie, Hoopa, and Volcanion sprites by <a href="http://quanyails.deviantart.com/art/Diancie-Hoopa-and-Volcanion-410722579">Quanyails</a>.<br>
-				Background images from <a href="http://imgur.com/a/ckatZ">here</a> modified by me.<br>
-				The original source by fio4ri can be viewed <a href="https://github.com/fio4ri/FavoritePokemon">here</a> and the current source by Quetzle can be viewed <a href="https://github.com/quetzle/FavoritePokemon">here</a>.
 			</div>
 		</div>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<script src="script.js"></script>
-		<script src="tool.js"></script>
-	</body>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="script.js"></script>
+	<script src="tool.js"></script>
+</body>
+
 </html>
