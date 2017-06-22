@@ -143,11 +143,12 @@ function newQueens() {
 };
 
 function declareWinner(arg){
-	var winningQueenIndex = arg == '#left' ? randomLeft : randomRight;
 	$(arg == '#left' ? '#right' : '#left').hide();
-	$('#title').html(queens[winningQueenIndex][0] + ' has won!');
+	//only one queen left, 0, named [0]
+	$('#title').html(queens[0][0] + ' has won!');
 	$(arg)
-		.css('background-color', 'gold');
+		.css('border-color', 'gold')
+		.css('border-width', '20px');
 }
 
 function clickLeft(){
