@@ -203,3 +203,16 @@ $('#helpButton').on('click', function() {
     $('#helpContent').hide();
   }
 });
+
+$(document).keydown(function(e) {
+  if (e.which == 37) {
+    $('#left').click();
+    return false;
+  } else if (e.which == 39) {
+    $('#right').click();
+    return false;
+  } else if (e.which == 40 || e.which == 38) {
+    $('#skip').click();
+    return false;
+  }
+});

@@ -1,7 +1,4 @@
-Favorite Pokémon Chooser
+Drag Queen Faceoff
 ===================
-Choose your favorite Pokémon in this neat little app. You don't have to choose based on your favorite though, you can choose it based on who would win in a battle, who would be the best to snuggle with, and more! Feel free to do what you want!
 
-It should work in all major browsers, if not make sure to tell me!
-
-More mobile friendly version coming soon.
+Spot a bug? This app is probably full of them. It was made quickly and not much testing is done. Feel free to report them anyway.
