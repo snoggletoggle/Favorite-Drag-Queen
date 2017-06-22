@@ -2,6 +2,15 @@ var jsonqueens;
 var queens = [];
 var checkboxes = [];
 
+var randomLeft;
+var sameRight = true;
+var randomRight;
+var seasonLeft = '';
+var seasonRight = '';
+var queensTotal;
+var queensEliminated;
+var queensRemaining;
+
 
 const numSeasons = 9;
 
@@ -11,8 +20,12 @@ $(document).ready(function() {
 });
 
 function setup() {
+	setupButtons();
+
   $('#helpContent').hide();
   $('#all').prop('checked', true);
+
+
   for (var i = 1; i <= numSeasons; i++) {
     checkboxes.push($('#s' + i));
     checkboxes[i - 1].prop('disabled', true);
@@ -20,8 +33,6 @@ function setup() {
   $.getJSON('queens.json', function(data) {
     jsonqueens = JSON.parse(JSON.stringify(data));
   })
-  $('#left').hide();
-  $('#right').hide();
 }
 
 function clickAll() {
@@ -58,7 +69,11 @@ function start() {
         queens.push(jsonqueens[i - 1][1][j]);
       }
     }
-    game();
+		queensTotal = queens.length;
+		queensEliminated = 0;
+		queensRemaining = queensTotal;
+		gameButtons();
+    newQueens();
   } else if (
     $('#s1').is(':checked') ||
     $('#s2').is(':checked') ||
@@ -75,38 +90,107 @@ function start() {
           queens.push(jsonqueens[i - 1][1][j]);
         }
       }
-      console.log(queens);
     }
-    game();
+		queensTotal = queens.length;
+		queensEliminated = 0;
+		queensRemaining = queensTotal;
+		gameButtons();
+    newQueens();
   } else {
     $('#title').html('Invalid season choices! Pick at least one!');
   }
 }
 
-function game() {
-  var randomLeft = Math.floor(Math.random() * queens.length);
-  var sameRight = true;
-  var randomRight;
-  var seasonLeft = '';
-  var seasonRight = '';
-  while (sameRight) {
-    randomRight = Math.floor(Math.random() * queens.length);
-    if (randomRight !== randomLeft) {
-      sameRight = false;
-    }
-  }
+function gameButtons(){
+	$('#skip').show();
+	$('#start').hide();
+	$('#left').show();
+	$('#right').show();
+	$('#score').show();
+	$('#title').html('Select your favorite queen!');
+	updateScore();
+};
 
-  $('#left')
-    .html('<img class="img-responsive" src="images/' + queens[randomLeft][1] + '">')
-    .show();
-  $('#right')
-    .html('<img class="img-responsive" src="images/' + queens[randomRight][1] + '">')
-    .show();
+function updateScore(){
+	$('#score').html(queensEliminated + ' of ' +queensTotal + ' queens eliminated');
+}
 
+function setupButtons(){
+	$('#skip').hide();
+	$('#start').show();
+	$('#score').hide();
+	$('#left').hide();
+	$('#right').hide();
+};
+
+function newRandoms(){
+	randomLeft = Math.floor(Math.random() * queens.length);
+	sameRight = true;
+	seasonLeft = '';
+	seasonRight = '';
+	while (sameRight) {
+		randomRight = Math.floor(Math.random() * queens.length);
+		if (randomRight !== randomLeft) {
+			sameRight = false;
+		}
+	}
+};
+
+function newQueens() {
+	newRandoms();
+  $('#left').html('<img class="img-responsive" src="images/' + queens[randomLeft][1] + '">');
+  $('#right').html('<img class="img-responsive" src="images/' + queens[randomRight][1] + '">');
+};
+
+function declareWinner(arg){
+	var winningQueenIndex = arg == '#left' ? randomLeft : randomRight;
+	$(arg == '#left' ? '#right' : '#left').hide();
+	$('#title').html(queens[winningQueenIndex][0] + ' has won!');
+	$(arg)
+		.css('background-color', 'gold');
+}
+
+function clickLeft(){
+	if(queensRemaining > 1){
+		queens.splice(randomRight, 1);
+		queensEliminated++;
+		queensRemaining--;
+		if(queensEliminated !== queensTotal - 1){
+			newQueens();
+			updateScore();
+		} else{
+			updateScore();
+			declareWinner('#left');
+		}
+	}
 };
 
 
-$('#startButton').on('click', start);
+function clickRight(){
+	if(queensRemaining > 1){
+		queens.splice(randomLeft, 1);
+		queensEliminated++;
+		queensRemaining--;
+		if(queensEliminated !== queensTotal - 1){
+			newQueens();
+			updateScore();
+		} else{
+			updateScore();
+			declareWinner('#right');
+		}
+	}
+};
+
+function skip(){
+	if(queensRemaining > 1){
+		newQueens();
+	}
+};
+
+$('#skip').on('click', skip);
+$('#left').on('click', clickLeft);
+$('#right').on('click', clickRight);
+$('#start').on('click', start);
 $('#all').on('click', clickAll);
 
 $('#helpButton').on('click', function() {
