@@ -23,12 +23,10 @@ function setup() {
 	setupButtons();
 
   $('#helpContent').hide();
-  $('#all').prop('checked', true);
 
 
   for (var i = 1; i <= numSeasons; i++) {
     checkboxes.push($('#s' + i));
-    checkboxes[i - 1].prop('disabled', true);
   }
   $.getJSON('queens.json', function(data) {
     jsonqueens = JSON.parse(JSON.stringify(data));
@@ -105,31 +103,28 @@ function gameButtons(){
 	$('#skip').show();
 	$('#start').hide();
   $('#score').show();
-	$('#left').show();
-	$('#right').show();
-  $('#left-title').show();
-  $('#right-title').show()
 	$('#title').html('Select your favorite queen!');
   $('#choice').hide();
+  $('#images-location').show();
+  $('#restartButton').show();
 
 
 	updateScore();
 };
 
-function updateScore(){
-	$('#score').html(queensEliminated + ' of ' +queensTotal + ' queens eliminated');
-}
 
 function setupButtons(){
 	$('#skip').hide();
 	$('#start').show();
 	$('#score').hide();
-	$('#left').hide();
-	$('#right').hide();
-  $('#left-title').hide();
-  $('#right-title').hide()
   $('#title').html('Select your seasons and press start to begin!');
   $('#choice').show();
+  $('#images-location').hide();
+  $('#restartButton').hide();
+};
+
+function updateScore(){
+	$('#score').html(queensEliminated + ' of ' +queensTotal + ' queens eliminated');
 };
 
 function newRandoms(){
@@ -147,19 +142,30 @@ function newRandoms(){
 
 function newQueens() {
 	newRandoms();
+  if(queensRemaining <= 2){
+    $('#skip').hide();
+  }
   $('#left-title').html(queens[randomLeft][0]);
   $('#right-title').html(queens[randomRight][0]);
   $('#left').html('<img class="img-responsive height-500" src="images/' + queens[randomLeft][1] + '">');
   $('#right').html('<img class="img-responsive height-500" src="images/' + queens[randomRight][1] + '">');
 };
 
-function declareWinner(arg){
-	$(arg == '#left' ? '#right' : '#left').hide();
-	//only one queen left, 0, named [0]
+function declareWinner(){
+
+  $('#images-location').html(''+
+  '<div class="col-xs-12  text-center">'+
+    '<button class="btn" id="left"><img class="img-responsive height-500" src="images/'+queens[0][1]+'"></button>'+
+    '<h3 id="title">'+queens[0][0]+'</h3>'+
+  '</div>');
+
+	// $(arg == '#left' ? '#right' : '#left').hide();
+  // $((arg == '#left' ? '#right' : '#left')+'-title').hide();
+	// //only one queen left, 0, named [0]
 	$('#title').html(queens[0][0] + ' has won!');
-	$(arg)
-		.css('border-color', 'gold')
-		.css('border-width', '20px');
+	// $(arg)
+	// 	.css('border-color', 'gold')
+	// 	.css('border-width', '20px');
 }
 
 function clickLeft(){
@@ -199,6 +205,11 @@ function skip(){
 	}
 };
 
+function restart(){
+  setup();
+}
+
+$('#restartButton').on('click', restart);
 $('#skip').on('click', skip);
 $('#left').on('click', clickLeft);
 $('#right').on('click', clickRight);
