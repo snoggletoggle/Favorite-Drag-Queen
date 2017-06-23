@@ -21,16 +21,13 @@ $(document).ready(function() {
 
 function setup() {
 	setupButtons();
-
   $('#helpContent').hide();
-
-
   for (var i = 1; i <= numSeasons; i++) {
     checkboxes.push($('#s' + i));
   }
   $.getJSON('queens.json', function(data) {
     jsonqueens = JSON.parse(JSON.stringify(data));
-  })
+  });
 }
 
 function clickAll() {
@@ -114,6 +111,7 @@ function gameButtons(){
 
 
 function setupButtons(){
+  $('#winner-location').hide();
 	$('#skip').hide();
 	$('#start').show();
 	$('#score').hide();
@@ -152,20 +150,12 @@ function newQueens() {
 };
 
 function declareWinner(){
+  $('#winner-location').show();
+  $('#winner').prop('src', 'images/' + queens[0][1]);
+  $('#winner-title').html(queens[0][0]);
+  $('#images-location').hide();
 
-  $('#images-location').html(''+
-  '<div class="col-xs-12  text-center">'+
-    '<button class="btn" id="left"><img class="img-responsive height-500" src="images/'+queens[0][1]+'"></button>'+
-    '<h3 id="title">'+queens[0][0]+'</h3>'+
-  '</div>');
-
-	// $(arg == '#left' ? '#right' : '#left').hide();
-  // $((arg == '#left' ? '#right' : '#left')+'-title').hide();
-	// //only one queen left, 0, named [0]
 	$('#title').html(queens[0][0] + ' has won!');
-	// $(arg)
-	// 	.css('border-color', 'gold')
-	// 	.css('border-width', '20px');
 }
 
 function clickLeft(){
