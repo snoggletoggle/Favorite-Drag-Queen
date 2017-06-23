@@ -104,10 +104,15 @@ function start() {
 function gameButtons(){
 	$('#skip').show();
 	$('#start').hide();
+  $('#score').show();
 	$('#left').show();
 	$('#right').show();
-	$('#score').show();
+  $('#left-title').show();
+  $('#right-title').show()
 	$('#title').html('Select your favorite queen!');
+  $('#choice').hide();
+
+
 	updateScore();
 };
 
@@ -121,6 +126,10 @@ function setupButtons(){
 	$('#score').hide();
 	$('#left').hide();
 	$('#right').hide();
+  $('#left-title').hide();
+  $('#right-title').hide()
+  $('#title').html('Select your seasons and press start to begin!');
+  $('#choice').show();
 };
 
 function newRandoms(){
@@ -138,6 +147,8 @@ function newRandoms(){
 
 function newQueens() {
 	newRandoms();
+  $('#left-title').html(queens[randomLeft][0]);
+  $('#right-title').html(queens[randomRight][0]);
   $('#left').html('<img class="img-responsive height-500" src="images/' + queens[randomLeft][1] + '">');
   $('#right').html('<img class="img-responsive height-500" src="images/' + queens[randomRight][1] + '">');
 };
