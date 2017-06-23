@@ -4,4 +4,7 @@ body {
   background-repeat: no-repeat;
   background-origin: content-box; }
 
+.height-500 {
+  height: 500px; }
+
 /*# sourceMappingURL=style.css.map */

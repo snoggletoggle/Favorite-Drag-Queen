@@ -138,8 +138,8 @@ function newRandoms(){
 
 function newQueens() {
 	newRandoms();
-  $('#left').html('<img class="img-responsive" src="images/' + queens[randomLeft][1] + '">');
-  $('#right').html('<img class="img-responsive" src="images/' + queens[randomRight][1] + '">');
+  $('#left').html('<img class="img-responsive height-500" src="images/' + queens[randomLeft][1] + '">');
+  $('#right').html('<img class="img-responsive height-500" src="images/' + queens[randomRight][1] + '">');
 };
 
 function declareWinner(arg){
