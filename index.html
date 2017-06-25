@@ -14,7 +14,7 @@
 
 <body>
 	<div class="container">
-		<div class="row well">
+		<div class="row well" id="header-area">
 			<div class="col-xs-12 text-center">
 				<h1 id="title"></h1>
 				<h4 id="score"></h4>
@@ -28,6 +28,12 @@
 			<div class="col-xs-6 text-center">
 				<button class="btn" id="right"></button>
 				<h3 id="right-title"></h3>
+			</div>
+		</div>
+		<div class="row well" id="winner-location">
+			<div class="col-xs-12 text-center">
+				<img class="img-responsive height-500" id="winner">
+				<h3 id="winner-title"></h3>
 			</div>
 		</div>
 		<div class="row well" id="choice">
@@ -112,14 +118,9 @@
 				</div>
 				<div id="helpContent">
 					<div class="row">
-						<h3 class="text-left">General</h3>
+						<h3 class="text-left">Help</h3>
 						<p class="well">
-							This presents you with 2 queens to choose from. Click (or press the corresponding arrow key) to select the Queen you prefer. You can choose any queen for any reason, your preferences are your own. You can also skip the current match-up if you can't decide.
-						</p>
-					</div>
-					<div class="row">
-						<h3 class="text-left">Choosing Seasons</h3>
-						<p class="well">
+							Starting presents you with two queens to choose from. Click (or press the corresponding arrow key, skip is up or down) to select the Queen you prefer. You can choose any queen for any reason, your preferences are your own. You can also skip the current match-up if you can't decide.
 							You can choose any combination of seasons to compare queens from. Once you start the game, you can no longer pick different seasons. Refreshing the page will allow you to pick again.
 						</p>
 					</div>

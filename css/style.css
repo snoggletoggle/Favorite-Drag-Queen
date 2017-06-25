@@ -6,4 +6,10 @@ body {
 .height-500 {
   height: 500px; }
 
+#winner {
+  margin: 0 auto; }
+
+#header-area {
+  margin-top: 100px; }
+
 /*# sourceMappingURL=style.css.map */
